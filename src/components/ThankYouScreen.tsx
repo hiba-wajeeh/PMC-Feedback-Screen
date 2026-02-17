@@ -1,12 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { CheckCircle, Download, RotateCcw } from "lucide-react";
+import { CheckCircle, RotateCcw } from "lucide-react";
 
 interface Props {
   onReset: () => void;
-  onDownload: () => void;
 }
 
-const ThankYouScreen = ({ onReset, onDownload }: Props) => {
+const ThankYouScreen = ({ onReset }: Props) => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="w-full max-w-md rounded-2xl bg-card p-10 text-center shadow-xl border border-border">
@@ -17,14 +16,10 @@ const ThankYouScreen = ({ onReset, onDownload }: Props) => {
         <p className="mt-2 text-muted-foreground">
           Your feedback has been recorded successfully. We appreciate your time!
         </p>
-        <div className="mt-6 flex flex-col gap-3">
+        <div className="mt-6">
           <Button onClick={onReset} className="w-full gap-2">
             <RotateCcw className="h-4 w-4" />
             Submit Another Response
-          </Button>
-          <Button onClick={onDownload} variant="outline" className="w-full gap-2">
-            <Download className="h-4 w-4" />
-            Download All Responses (CSV)
           </Button>
         </div>
       </div>

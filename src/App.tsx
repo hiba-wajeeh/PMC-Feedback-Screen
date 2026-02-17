@@ -17,7 +17,6 @@ const ThankYouWrapper = () => {
   return (
     <ThankYouScreen
       onReset={() => navigate("/")}
-      onDownload={downloadFeedbackAsCSV}
     />
   );
 };

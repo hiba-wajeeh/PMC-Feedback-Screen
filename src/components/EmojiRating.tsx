@@ -13,35 +13,35 @@ const ratings: {
   { 
     value: "excellent", 
     emoji: "😄", 
-    label: "Excellent",
+    label: "EXCELLENT",
     arabic: "ممتاز",
     urdu: "بہترین"
   },
   { 
     value: "good", 
     emoji: "🙂", 
-    label: "Good",
+    label: "GOOD",
     arabic: "جيد",
     urdu: "اچھا"
   },
   { 
     value: "average", 
     emoji: "😐", 
-    label: "Average",
+    label: "AVERAGE",
     arabic: "متوسط",
     urdu: "اوسط"
   },
   { 
     value: "bad", 
     emoji: "😟", 
-    label: "Bad",
+    label: "BAD",
     arabic: "سيء",
     urdu: "برا"
   },
   { 
     value: "very_bad", 
     emoji: "😡", 
-    label: "Very Bad",
+    label: "VERY BAD",
     arabic: "سيء جدا",
     urdu: "بہت برا"
   },
@@ -85,27 +85,13 @@ const EmojiRating = ({ selected, onSelect }: Props) => {
           >
             <span className="text-7xl [&_img]:inline-block [&_img]:h-32 [&_img]:w-32">{r.emoji}</span>
             <div className="flex flex-col items-center gap-0.5">
-              <span
-                className={`text-[15px] font-medium ${
-                  isSelected ? "text-primary" : "text-muted-foreground"
-                }`}
-              >
+              <span className="text-[15px] font-bold text-black">
                 {r.label}
               </span>
-              <span
-                className={`text-[15px] font-medium ${
-                  isSelected ? "text-primary" : "text-muted-foreground"
-                }`}
-                dir="rtl"
-              >
+              <span className="text-[14px] font-bold text-black" dir="rtl">
                 {r.arabic}
               </span>
-              <span
-                className={`text-[15px] font-medium ${
-                  isSelected ? "text-primary" : "text-muted-foreground"
-                }`}
-                dir="rtl"
-              >
+              <span className="text-[14px] font-bold text-black" dir="rtl">
                 {r.urdu}
               </span>
             </div>
