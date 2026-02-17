@@ -1,13 +1,50 @@
+import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import twemoji from "twemoji";
 import type { Rating } from "@/pages/Index";
 
-const ratings: { value: Rating; emoji: string; label: string }[] = [
-  { value: "excellent", emoji: "😄", label: "Excellent" },
-  { value: "good", emoji: "🙂", label: "Good" },
-  { value: "average", emoji: "😐", label: "Average" },
-  { value: "bad", emoji: "😟", label: "Bad" },
-  { value: "very_bad", emoji: "😡", label: "Very Bad" },
+const ratings: { 
+  value: Rating; 
+  emoji: string; 
+  label: string;
+  arabic: string;
+  urdu: string;
+}[] = [
+  { 
+    value: "excellent", 
+    emoji: "😄", 
+    label: "Excellent",
+    arabic: "ممتاز",
+    urdu: "بہترین"
+  },
+  { 
+    value: "good", 
+    emoji: "🙂", 
+    label: "Good",
+    arabic: "جيد",
+    urdu: "اچھا"
+  },
+  { 
+    value: "average", 
+    emoji: "😐", 
+    label: "Average",
+    arabic: "متوسط",
+    urdu: "اوسط"
+  },
+  { 
+    value: "bad", 
+    emoji: "😟", 
+    label: "Bad",
+    arabic: "سيء",
+    urdu: "برا"
+  },
+  { 
+    value: "very_bad", 
+    emoji: "😡", 
+    label: "Very Bad",
+    arabic: "سيء جدا",
+    urdu: "بہت برا"
+  },
 ];
 
 interface Props {
@@ -17,6 +54,7 @@ interface Props {
 
 const EmojiRating = ({ selected, onSelect }: Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (containerRef.current) {
@@ -27,6 +65,10 @@ const EmojiRating = ({ selected, onSelect }: Props) => {
     }
   }, []);
 
+  const handleEmojiClick = (rating: Rating) => {
+    navigate(`/feedback/${rating}`);
+  };
+
   return (
     <div ref={containerRef} className="flex justify-center gap-3">
       {ratings.map((r) => {
@@ -34,21 +76,39 @@ const EmojiRating = ({ selected, onSelect }: Props) => {
         return (
           <button
             key={r.value}
-            onClick={() => onSelect(r.value)}
+            onClick={() => handleEmojiClick(r.value)}
             className={`flex flex-col items-center gap-1 rounded-xl px-3 py-3 transition-all duration-200 ${
               isSelected
                 ? "bg-primary/10 ring-2 ring-primary scale-110"
                 : "hover:bg-emoji-hover hover:scale-105"
             }`}
           >
-            <span className="text-3xl [&_img]:inline-block [&_img]:h-8 [&_img]:w-8">{r.emoji}</span>
-            <span
-              className={`text-[10px] font-medium ${
-                isSelected ? "text-primary" : "text-muted-foreground"
-              }`}
-            >
-              {r.label}
-            </span>
+            <span className="text-7xl [&_img]:inline-block [&_img]:h-32 [&_img]:w-32">{r.emoji}</span>
+            <div className="flex flex-col items-center gap-0.5">
+              <span
+                className={`text-[15px] font-medium ${
+                  isSelected ? "text-primary" : "text-muted-foreground"
+                }`}
+              >
+                {r.label}
+              </span>
+              <span
+                className={`text-[15px] font-medium ${
+                  isSelected ? "text-primary" : "text-muted-foreground"
+                }`}
+                dir="rtl"
+              >
+                {r.arabic}
+              </span>
+              <span
+                className={`text-[15px] font-medium ${
+                  isSelected ? "text-primary" : "text-muted-foreground"
+                }`}
+                dir="rtl"
+              >
+                {r.urdu}
+              </span>
+            </div>
           </button>
         );
       })}
