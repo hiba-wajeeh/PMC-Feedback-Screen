@@ -20,9 +20,8 @@ const FeedbackForm = ({ onSubmit, isSubmitting = false }: Props) => {
   const validate = () => {
     const e: Record<string, string> = {};
     if (!name.trim()) e.name = "Name is required";
-    if (!email.trim()) e.email = "Email is required";
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) e.email = "Invalid email";
     if (!phone.trim()) e.phone = "Phone is required";
+    if (email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) e.email = "Invalid email";
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -49,19 +48,6 @@ const FeedbackForm = ({ onSubmit, isSubmitting = false }: Props) => {
         {errors.name && <p className="mt-1 text-xs text-destructive">{errors.name}</p>}
       </div>
       <div>
-        <Label htmlFor="email" className="text-foreground">Email *</Label>
-        <Input 
-          id="email" 
-          type="email" 
-          value={email} 
-          onChange={(e) => setEmail(e.target.value)} 
-          placeholder="john@example.com" 
-          className="mt-1"
-          disabled={isSubmitting}
-        />
-        {errors.email && <p className="mt-1 text-xs text-destructive">{errors.email}</p>}
-      </div>
-      <div>
         <Label htmlFor="phone" className="text-foreground">Phone *</Label>
         <Input 
           id="phone" 
@@ -73,6 +59,19 @@ const FeedbackForm = ({ onSubmit, isSubmitting = false }: Props) => {
           disabled={isSubmitting}
         />
         {errors.phone && <p className="mt-1 text-xs text-destructive">{errors.phone}</p>}
+      </div>
+      <div>
+        <Label htmlFor="email" className="text-foreground">Email (optional)</Label>
+        <Input 
+          id="email" 
+          type="email" 
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+          placeholder="john@example.com" 
+          className="mt-1"
+          disabled={isSubmitting}
+        />
+        {errors.email && <p className="mt-1 text-xs text-destructive">{errors.email}</p>}
       </div>
       <div>
         <Label htmlFor="comments" className="text-foreground">Comments (optional)</Label>

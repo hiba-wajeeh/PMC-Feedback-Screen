@@ -13,35 +13,35 @@ const ratings: {
   { 
     value: "excellent", 
     emoji: "😄", 
-    label: "EXCELLENT",
+    label: "Excellent",
     arabic: "ممتاز",
     urdu: "بہترین"
   },
   { 
     value: "good", 
     emoji: "🙂", 
-    label: "GOOD",
+    label: "Good",
     arabic: "جيد",
     urdu: "اچھا"
   },
   { 
     value: "average", 
     emoji: "😐", 
-    label: "AVERAGE",
+    label: "Average",
     arabic: "متوسط",
     urdu: "اوسط"
   },
   { 
     value: "bad", 
     emoji: "😟", 
-    label: "BAD",
+    label: "Bad",
     arabic: "سيء",
     urdu: "برا"
   },
   { 
     value: "very_bad", 
     emoji: "😡", 
-    label: "VERY BAD",
+    label: "Very Bad",
     arabic: "سيء جدا",
     urdu: "بہت برا"
   },
@@ -77,21 +77,21 @@ const EmojiRating = ({ selected, onSelect }: Props) => {
           <button
             key={r.value}
             onClick={() => handleEmojiClick(r.value)}
-            className={`flex flex-col items-center gap-1 rounded-xl px-3 py-3 transition-all duration-200 ${
+            className={`flex flex-col items-center gap-3 rounded-xl px-3 py-3 transition-all duration-200 ${
               isSelected
                 ? "bg-primary/10 ring-2 ring-primary scale-110"
                 : "hover:bg-emoji-hover hover:scale-105"
             }`}
           >
-            <span className="text-7xl [&_img]:inline-block [&_img]:h-32 [&_img]:w-32">{r.emoji}</span>
+            <span className="text-6xl [&_img]:inline-block [&_img]:h-32 [&_img]:w-32">{r.emoji}</span>
             <div className="flex flex-col items-center gap-0.5">
-              <span className="text-[15px] font-bold text-black">
+              <span className="text-[16px] font-bold text-primary">
                 {r.label}
               </span>
-              <span className="text-[14px] font-bold text-black" dir="rtl">
+              <span className="text-[15px] font-bold text-primary" dir="rtl">
                 {r.arabic}
               </span>
-              <span className="text-[14px] font-bold text-black" dir="rtl">
+              <span className="text-[15px] font-bold text-primary" dir="rtl">
                 {r.urdu}
               </span>
             </div>
