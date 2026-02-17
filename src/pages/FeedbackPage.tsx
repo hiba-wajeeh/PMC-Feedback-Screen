@@ -2,17 +2,49 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import pmcLogo from "@/assets/pmc-logo.png";
 import FeedbackForm from "@/components/FeedbackForm";
-import { saveFeedback } from "@/lib/feedbackStore";
+import { saveFeedbackToSheet } from "@/lib/api";
 import type { Rating } from "@/pages/Index";
+import { useToast } from "@/hooks/use-toast";
 
 const FeedbackPage = () => {
   const { rating } = useParams<{ rating: Rating }>();
   const navigate = useNavigate();
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (data: { name: string; email: string; phone: string; comments: string }) => {
+  const handleSubmit = async (data: { name: string; email: string; phone: string; comments: string }) => {
     if (!rating) return;
-    saveFeedback({ rating: rating as Rating, ...data, date: new Date().toISOString() });
-    navigate("/thank-you");
+    
+    setIsSubmitting(true);
+    
+    try {
+      const success = await saveFeedbackToSheet({
+        rating,
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        comments: data.comments
+      });
+      
+      if (success) {
+        navigate("/thank-you");
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to save feedback. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
+      console.error("Failed to save feedback:", error);
+      toast({
+        title: "Error",
+        description: "Failed to save feedback. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleBack = () => {
@@ -52,10 +84,11 @@ const FeedbackPage = () => {
             <button
               onClick={handleBack}
               className="mb-6 text-sm text-primary hover:underline"
+              disabled={isSubmitting}
             >
               ← Back to ratings
             </button>
-            <FeedbackForm onSubmit={handleSubmit} />
+            <FeedbackForm onSubmit={handleSubmit} isSubmitting={isSubmitting} />
           </div>
         </div>
       </div>

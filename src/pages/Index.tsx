@@ -51,8 +51,7 @@ const Index = () => {
       {/* Full Page Animated Background */}
       <div 
         ref={headerRef}
-        className="finisher-header fixed inset-0 w-full h-full -z-10"
-        style={{ minHeight: '100vh', minWidth: '100vw' }}
+        className="finisher-header fixed inset-0 w-full h-full"
       />
 
       {/* Content Layer */}
