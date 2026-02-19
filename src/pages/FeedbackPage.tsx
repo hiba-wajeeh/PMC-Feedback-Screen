@@ -1,6 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import pmcLogo from "@/assets/pmc-logo.png";
 import FeedbackForm from "@/components/FeedbackForm";
 import { saveFeedbackToSheet } from "@/lib/api";
 import type { Rating } from "@/pages/Index";
@@ -53,17 +52,6 @@ const FeedbackPage = () => {
 
   return (
     <div className="flex min-h-screen flex-col bg-white">
-      {/* Logo Section */}
-      <div className="flex flex-col items-center px-6 pt-10 pb-4">
-        <div className="rounded-full bg-white p-2 shadow-lg ring-2 ring-primary/30">
-          <img
-            src={pmcLogo}
-            alt="PAD Logo"
-            className="h-28 w-28 rounded-full object-contain"
-          />
-        </div>
-      </div>
-
       {/* Welcome Banner */}
       <div className="bg-primary px-6 py-6 text-center">
         <h1 className="text-2xl font-bold text-white">
