@@ -25,3 +25,19 @@ dist-ssr
 .env
 .env.local
 .env.*.local
+
+
+# Capacitor / Native
+android/
+ios/
+
+# Android Studio
+.gradle/
+build/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
