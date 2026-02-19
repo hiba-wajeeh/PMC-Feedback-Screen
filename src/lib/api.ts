@@ -1,8 +1,6 @@
 import axios from 'axios';
 
-// Use environment variables (loaded from .env file)
-const GOOGLE_SCRIPT_URL = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
-const SECRET_KEY = import.meta.env.VITE_SECRET_KEY;
+const SHAREPOINT_FLOW_URL = import.meta.env.VITE_SP_FLOW_URL;
 
 export interface FeedbackData {
   rating: string;
@@ -14,18 +12,19 @@ export interface FeedbackData {
 
 export const saveFeedbackToSheet = async (data: FeedbackData): Promise<boolean> => {
   try {
-    const response = await axios.post(GOOGLE_SCRIPT_URL, {
-      ...data,
-      secretKey: SECRET_KEY
-    }, {
-      headers: {
-        'Content-Type': 'text/plain',
-      },
-    });
-    
+    const response = await axios.post(
+      SHAREPOINT_FLOW_URL,
+      data,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+
     return response.data.success === true;
   } catch (error) {
-    console.error('Error saving to Google Sheets:', error);
+    console.error('Error saving to SharePoint:', error);
     return false;
   }
 };
