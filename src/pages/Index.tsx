@@ -1,25 +1,36 @@
 import pmcLogo from "@/assets/pmc-logo.png";
 import bottomLeftImage from "@/assets/leftcorner.png"; // Replace with your actual image filename
 import EmojiRating from "@/components/EmojiRating";
+import secondLogo from "@/assets/pmclogo.png"; // replace with your file
 
 const Index = () => {
   return (
     <div className="relative flex min-h-screen flex-col bg-white">
-      {/* Logo Section */}
-      <div className="flex flex-col items-center px-6 pt-10 pb-4">
-        <div className="rounded-full bg-white p-2 shadow-lg ring-2 ring-primary/30">
-          <img
-            src={pmcLogo}
-            alt="PAD Logo"
-            className="h-28 w-28 rounded-full object-contain"
-          />
-        </div>
+    {/* Logo Section */}
+    <div className="flex items-center justify-center gap-6 px-6 pt-10 pb-4">
+      {/* First Logo */}
+      <div className="rounded-full bg-white p-2 shadow-lg ring-2 ring-primary/30">
+        <img
+          src={pmcLogo}
+          alt="PAD Logo"
+          className="h-28 w-28 rounded-full object-contain"
+        />
       </div>
+
+      {/* Second Logo */}
+      <div className="rounded-full bg-white p-2 shadow-lg ring-2 ring-primary/30">
+        <img
+          src={secondLogo}
+          alt="Second Logo"
+          className="h-28 w-28 rounded-full object-contain"
+        />
+      </div>
+    </div>
 
       {/* Welcome Banner */}
       <div className="bg-primary px-6 py-6 text-center">
         <h1 className="text-3xl font-bold text-white">
-          Welcome to PMC
+          Welcome to Pakistan Association Dubai
         </h1>
         <p className="mt-1 text-base text-white/85">
           Thank you for choosing us!
